@@ -1,0 +1,156 @@
+.screen {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg);
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: clamp(400px, 32vw, 520px);
+  padding: clamp(32px, 4.2vw, 52px);
+  border-radius: 28px;
+  background: rgba(13, 15, 20, 0.72);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-brd);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55);
+  text-align: center;
+}
+
+.crest {
+  display: block;
+  height: clamp(34px, 3.4vw, 46px);
+  width: auto;
+  margin: 0 auto clamp(16px, 1.8vw, 22px);
+  object-fit: contain;
+}
+
+.card h1 {
+  font-size: clamp(19px, 1.8vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.sub {
+  font-size: clamp(12px, 1vw, 14px);
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.tabs {
+  display: flex;
+  margin: clamp(22px, 2.4vw, 30px) 0 clamp(18px, 2vw, 24px);
+  padding: 5px;
+  border-radius: 14px;
+  background: var(--glass);
+  border: 1px solid var(--glass-brd);
+}
+
+.tabs button {
+  flex: 1;
+  font-family: inherit;
+  font-size: clamp(12.5px, 1vw, 14px);
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+  padding: clamp(9px, 1vw, 12px) 0;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.tabActive {
+  background: linear-gradient(135deg, var(--vu-red), var(--vu-red-dark));
+  color: #fff !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.4vw, 18px);
+  text-align: left;
+  overflow: hidden;
+}
+
+.field label {
+  display: block;
+  font-size: clamp(11.5px, 0.9vw, 13px);
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  font-family: inherit;
+  font-size: clamp(13.5px, 1.1vw, 15px);
+  color: var(--ink);
+  background: var(--glass);
+  border: 1.5px solid var(--glass-brd);
+  border-radius: 12px;
+  padding: clamp(11px, 1.2vw, 15px) clamp(13px, 1.4vw, 17px);
+  outline: none;
+  transition: border-color 0.25s;
+}
+
+.field input:focus {
+  border-color: var(--vu-blue-light);
+}
+
+.error {
+  font-size: 12px;
+  color: var(--vu-red-light);
+  background: rgba(214, 34, 70, 0.12);
+  border: 1px solid rgba(214, 34, 70, 0.3);
+  border-radius: 10px;
+  padding: 9px 12px;
+}
+
+.submit {
+  margin-top: 4px;
+  height: clamp(44px, 3.6vw, 54px);
+  border: 0;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: clamp(13.5px, 1.1vw, 15px);
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--vu-red), var(--vu-red-dark));
+  box-shadow: 0 10px 26px rgba(214, 34, 70, 0.34);
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.switch {
+  margin-top: clamp(18px, 2vw, 24px);
+  font-size: clamp(12px, 0.95vw, 13.5px);
+  color: var(--muted);
+}
+
+.switch button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  color: var(--vu-blue-light);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}

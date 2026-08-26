@@ -1,0 +1,72 @@
+:root {
+  --vu-red: #d62246;
+  --vu-red-dark: #9e1631;
+  --vu-red-light: #ff5677;
+  --vu-blue: #003d82;
+  --vu-blue-dark: #001f42;
+  --vu-blue-light: #2e6bc4;
+
+  --bg: #0d0f14;
+  --bg-alt: #14171f;
+  --ink: #f4f6fb;
+  --muted: #96a0b5;
+  --success: #4ee1a0;
+  --warning: #ffb454;
+
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-strong: rgba(255, 255, 255, 0.1);
+  --glass-brd: rgba(255, 255, 255, 0.12);
+
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --ease-spring: cubic-bezier(0.22, 1.4, 0.4, 1);
+  --ease-glide: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* radii */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+
+  /* elevation */
+  --shadow-1: 0 4px 14px rgba(0, 0, 0, 0.22);
+  --shadow-2: 0 10px 28px rgba(0, 0, 0, 0.32);
+  --shadow-3: 0 20px 48px rgba(0, 0, 0, 0.45);
+  --inset-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  --focus-ring-red: 0 0 0 3px rgba(214, 34, 70, 0.22);
+  --focus-ring-blue: 0 0 0 3px rgba(46, 107, 196, 0.22);
+
+  /* extra glass tiers — existing --glass/--glass-strong/--glass-brd unchanged */
+  --glass-faint: rgba(255, 255, 255, 0.03);
+  --glass-brd-soft: rgba(255, 255, 255, 0.08);
+  --surface-1: rgba(20, 23, 31, 0.6);
+  --surface-2: rgba(20, 23, 31, 0.82);
+
+  /* cockpit depth tiers (desktop floating-node distance cues) */
+  --depth-near-scale: 1;
+  --depth-mid-scale: 0.88;
+  --depth-far-scale: 0.76;
+  --depth-near-blur: 0px;
+  --depth-mid-blur: 1.5px;
+  --depth-far-blur: 3px;
+  --depth-near-opacity: 1;
+  --depth-mid-opacity: 0.86;
+  --depth-far-opacity: 0.64;
+
+  /* motion durations — existing --ease-spring/--ease-glide unchanged */
+  --dur-fast: 200ms;
+  --dur-base: 300ms;
+  --dur-slow: 450ms;
+  --dur-cinematic: 650ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}

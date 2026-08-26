@@ -1,0 +1,94 @@
+.view {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Restrained ambient light filling the extra horizontal space unlocked by
+   the desktop cockpit widen below — decorative only, never interactive,
+   and low-opacity enough to read as atmosphere rather than a glowing panel. */
+.ambientFill {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  width: 40vw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease-glide);
+}
+
+.ambientFill.left {
+  left: -12vw;
+  background: radial-gradient(circle, var(--vu-red) 0%, transparent 70%);
+}
+
+.ambientFill.right {
+  right: -12vw;
+  background: radial-gradient(circle, var(--vu-blue) 0%, transparent 70%);
+}
+
+/* keep in sync with breakpoints.ts (desktop: 1200) */
+@media (min-width: 1200px) {
+  .ambientFill {
+    opacity: 0.06;
+  }
+}
+
+/* SuggestionOrbit and ResponseProps position themselves as percentages of
+   this box, not the full (possibly very wide) .stage — keeps them near the
+   avatar instead of flying out toward the window edges on a wide desktop. */
+.stageInner {
+  position: relative;
+  width: 100%;
+  max-width: clamp(480px, 62vw, 860px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Desktop "cockpit" widen — real horizontal space instead of the same
+   centered narrow column stretched across a big window. SuggestionOrbit's
+   percentage-based node positions spread out naturally once this widens,
+   no extra logic needed there for the desktop tier itself. */
+/* keep in sync with breakpoints.ts (desktop: 1200) */
+@media (min-width: 1200px) {
+  .stageInner {
+    max-width: min(1400px, 92vw);
+  }
+}
+
+/* AvatarStage portals the persistent <Avatar/> canvas into this box.
+   Scales fluidly with viewport size so the avatar genuinely grows on
+   larger screens instead of staying phone-sized inside a bigger window. */
+.avatarSlot {
+  width: clamp(200px, 30vw, 420px);
+  height: clamp(300px, 62vh, 720px);
+}
+
+.hint {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-size: clamp(11.5px, 1vw, 13px);
+  color: var(--muted);
+  padding-bottom: 10px;
+  letter-spacing: 0.2px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}

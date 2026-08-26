@@ -1,0 +1,94 @@
+.row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 88%;
+}
+
+.userRow {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+  margin-left: auto;
+}
+
+.botRow {
+  align-self: flex-start;
+}
+
+.avatarDot {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--vu-blue-light), var(--vu-blue-dark));
+}
+
+.bubble {
+  font-size: 13.5px;
+  line-height: 1.5;
+  padding: 11px 14px;
+  border-radius: 17px;
+}
+
+.user {
+  color: #fff;
+  border-bottom-right-radius: 5px;
+  background: linear-gradient(135deg, var(--vu-red) 0%, var(--vu-red-dark) 100%);
+  box-shadow: var(--shadow-1), var(--inset-highlight);
+}
+
+.bot {
+  color: var(--ink);
+  border-bottom-left-radius: 5px;
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-brd);
+  box-shadow: var(--shadow-1), var(--inset-highlight);
+}
+
+.bot.reveal {
+  animation: reveal var(--dur-cinematic) var(--ease-glide) both;
+}
+
+@keyframes reveal {
+  from {
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, transparent 0%);
+    mask-image: linear-gradient(90deg, #000 0%, transparent 0%);
+    opacity: 0.4;
+  }
+  to {
+    -webkit-mask-image: linear-gradient(90deg, #000 100%, transparent 100%);
+    mask-image: linear-gradient(90deg, #000 100%, transparent 100%);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bot.reveal {
+    animation: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+    opacity: 1;
+  }
+}
+
+.time {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  color: var(--muted);
+  padding: 0 4px;
+}
+
+.timeRight {
+  text-align: right;
+}
+
+.tick {
+  margin-left: 4px;
+  color: var(--vu-blue-light);
+}

@@ -1,0 +1,184 @@
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  animation: fadeIn 0.35s ease both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- idle ambient haze: always present behind the avatar, breathing very
+   slowly, so nothing "snaps off" when the other phase visuals take over —
+   they layer on top of/dim this rather than replacing it. --- */
+.haze {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+  width: 80%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--vu-blue-light) 0%, transparent 68%);
+  opacity: 0.22;
+  filter: blur(6px);
+  animation: hazeBreathe 5.5s ease-in-out infinite;
+  transition: opacity 0.6s var(--ease-glide);
+}
+
+.haze.dimmed {
+  opacity: 0.1;
+}
+
+@keyframes hazeBreathe {
+  0%,
+  100% {
+    transform: scale(0.96);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+.halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+  width: 62%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1.5px solid rgba(214, 34, 70, 0.3);
+  opacity: 0;
+}
+
+.halo.r2 {
+  width: 76%;
+  border-color: rgba(46, 107, 196, 0.24);
+}
+
+.halo.r3 {
+  width: 90%;
+  border-color: rgba(214, 34, 70, 0.16);
+}
+
+.halo.active {
+  opacity: 1;
+  animation: ripple 2.2s ease-out infinite;
+}
+
+.halo.r2.active {
+  animation-delay: 0.45s;
+}
+
+.halo.r3.active {
+  animation-delay: 0.9s;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.78);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.18);
+    opacity: 0;
+  }
+}
+
+/* --- processing: a thin rotating conic arc, not a generic spinner —
+   deliberately a different motion character (rotation) than the listening
+   ripple (radial pulse) so the two states never read as the same thing. --- */
+.processingRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--vu-red), var(--vu-blue), var(--vu-red));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  opacity: 0;
+}
+
+.processingRing.active {
+  opacity: 0.55;
+  animation: spin 2.4s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- responding: a slow, soft pulse — deliberately gentler and slower than
+   the listening ripple so it reads as "speaking calmly," not "alerting." --- */
+.respondingPulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+  width: 74%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--vu-blue-light) 0%, transparent 70%);
+  opacity: 0;
+}
+
+.respondingPulse.active {
+  animation: respondBreathe 3.2s var(--ease-glide) infinite;
+}
+
+@keyframes respondBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    animation: none;
+  }
+
+  .haze {
+    animation: none;
+    opacity: 0.16;
+  }
+
+  .halo.active {
+    animation: none;
+    opacity: 0.5;
+  }
+
+  .processingRing.active {
+    animation: none;
+  }
+
+  .respondingPulse.active {
+    animation: none;
+    opacity: 0.4;
+  }
+}

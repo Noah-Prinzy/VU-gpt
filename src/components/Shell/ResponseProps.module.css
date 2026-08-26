@@ -1,0 +1,41 @@
+.props {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.bubble {
+  position: absolute;
+  max-width: 62%;
+  font-size: 12.5px;
+  line-height: 1.45;
+  padding: 10px 14px;
+  border-radius: 16px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+.user {
+  top: 8%;
+  right: 4%;
+  color: #fff;
+  border-bottom-right-radius: 5px;
+  background: linear-gradient(135deg, var(--vu-red) 0%, var(--vu-red-dark) 100%);
+}
+
+.bot {
+  bottom: 24%;
+  left: 2%;
+  color: #f2f6ff;
+  border-bottom-left-radius: 5px;
+  background: linear-gradient(135deg, var(--vu-blue-light) 0%, var(--vu-blue-dark) 100%);
+}
+
+@media (max-width: 380px) {
+  .bubble {
+    font-size: 11.5px;
+    max-width: 68%;
+    padding: 9px 12px;
+  }
+}

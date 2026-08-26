@@ -1,0 +1,134 @@
+.orbit {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.pill {
+  position: absolute;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  padding: 8px 13px;
+  border-radius: 999px;
+  cursor: pointer;
+  background: var(--glass);
+  border: 1px solid var(--glass-brd);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-1), var(--inset-highlight);
+  max-width: min(124px, 32vw);
+  transition:
+    border-color var(--dur-fast) var(--ease-standard),
+    background var(--dur-fast) var(--ease-standard),
+    filter var(--dur-base) var(--ease-standard),
+    box-shadow var(--dur-base) var(--ease-standard);
+}
+
+.pill:hover {
+  background: var(--glass-strong);
+  border-color: var(--glass-brd-soft);
+}
+
+.pill:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-1), var(--inset-highlight), var(--focus-ring-blue);
+}
+
+/* Depth tiers (desktop cockpit only) — opacity/scale are driven by Framer
+   Motion's animate prop (so they don't fight this class's own transform),
+   these only add the blur/shadow cues that make near/far read as distance. */
+.tierNear {
+  box-shadow: var(--shadow-2), var(--inset-highlight);
+}
+
+.tierMid {
+  filter: blur(var(--depth-mid-blur));
+}
+
+.tierFar {
+  filter: blur(var(--depth-far-blur));
+  box-shadow: none;
+}
+
+.icon {
+  flex-shrink: 0;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 380px) {
+  .pill {
+    font-size: 11px;
+    padding: 7px 10px;
+    max-width: 108px;
+  }
+}
+
+/* --- mobile chip strip: a real flex row between the stage and the dock,
+   never absolutely positioned over other content, so it can never overlap
+   or clip the dock at any viewport height. --- */
+.chipStrip {
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+  padding: 0 0 6px;
+}
+
+.chipTrack {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding: 2px var(--space-4) 4px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.chipTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+  padding: 9px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  background: var(--glass);
+  border: 1px solid var(--glass-brd);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-1), var(--inset-highlight);
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-spring);
+}
+
+.chip:active {
+  transform: scale(0.95);
+  background: var(--glass-strong);
+}
+
+.chip:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-1), var(--inset-highlight), var(--focus-ring-blue);
+}

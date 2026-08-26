@@ -1,0 +1,105 @@
+/**
+ * Shared, non-scoped base classes for the small set of button/glass-surface
+ * shapes reused across Dock/TopBar/ChatScreen/SuggestionOrbit. Applied
+ * alongside each component's own CSS-module class (which keeps only
+ * layout-specific sizing/position), e.g.:
+ *
+ *   <button className={`${styles.iconBtn} icon-btn`}>
+ *
+ * Kept as a plain global stylesheet (not a CSS module) so these exact class
+ * names are stable and can be combined directly in className strings without
+ * relying on CSS Modules' `composes: x from './global.css'` behavior.
+ */
+
+.glass-surface {
+  background: var(--glass);
+  border: 1px solid var(--glass-brd);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-1), var(--inset-highlight);
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--glass-brd);
+  border-radius: var(--radius-sm);
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  color: var(--muted);
+  cursor: pointer;
+  box-shadow: var(--inset-highlight);
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-spring);
+}
+
+.icon-btn:hover {
+  background: var(--glass-strong);
+  color: var(--ink);
+}
+
+.icon-btn:active {
+  transform: scale(0.94);
+}
+
+.icon-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--inset-highlight), var(--focus-ring-blue);
+}
+
+.btn-primary-red {
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--vu-red), var(--vu-red-dark));
+  box-shadow: var(--shadow-2);
+  transition:
+    transform var(--dur-base) var(--ease-spring),
+    box-shadow var(--dur-base) var(--ease-standard);
+}
+
+.btn-primary-red:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.btn-primary-red:active:not(:disabled) {
+  transform: translateY(0) scale(0.94);
+}
+
+.btn-primary-red:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-2), var(--focus-ring-red);
+}
+
+.btn-primary-red:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-pill {
+  border: 1.5px solid var(--glass-brd);
+  border-radius: var(--radius-pill, 999px);
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--inset-highlight);
+  cursor: pointer;
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    border-color var(--dur-fast) var(--ease-standard),
+    background var(--dur-fast) var(--ease-standard);
+}
+
+.btn-pill:hover {
+  background: var(--glass-strong);
+}
+
+.btn-pill:active {
+  transform: scale(0.97);
+}
+
+.btn-pill:focus-visible {
+  outline: none;
+  box-shadow: var(--inset-highlight), var(--focus-ring-blue);
+}

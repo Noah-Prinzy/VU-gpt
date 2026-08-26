@@ -1,0 +1,47 @@
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* These are architecture photos (the actual VU building, no identifiable
+   people in frame) — unlike the earlier event-photo set, there's no reason
+   to blur them into pure texture. Lightly softened and dimmed so it reads
+   as a backdrop rather than competing with foreground UI, but the building
+   and crest stay legible. */
+.photo {
+  position: absolute;
+  inset: -20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: grayscale(0.25) contrast(1.05) brightness(0.62) blur(3px);
+  transform: scale(1.03);
+}
+
+/* Red-to-blue duotone wash over the photo — this is where the brand colors
+   live now, as a tint, not as the background itself. */
+.duotone {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--vu-red) 0%, transparent 42%, transparent 58%, var(--vu-blue) 100%);
+  mix-blend-mode: color;
+  opacity: 0.7;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(5, 6, 10, 0.4) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(5, 6, 10, 0.62) 0%, rgba(5, 6, 10, 0.78) 45%, rgba(5, 6, 10, 0.92) 100%);
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
